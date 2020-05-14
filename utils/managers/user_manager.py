@@ -4,6 +4,7 @@ import utils
 from database import database
 from users.schemas import UserIn
 
+
 class UserManager:
 
     model = users
@@ -19,8 +20,7 @@ class UserManager:
     async def get_by_email(self, email):
         query = self.query_manager.filter({'email': email})
         return await database.fetch_one(query)
-        
-    
+
     async def create(self, user: UserIn):
         user.password = self.password_manager.hash_password(
             user.password

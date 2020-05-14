@@ -1,11 +1,24 @@
 import jwt
+from jwt.exceptions import InvalidSignatureError, DecodeError
 
 from users.schemas import User
+from fastapi import HTTPException
+
 
 class JwtManager:
 
     def create_jwt(self, user: User) -> str:
-        return jwt.encode(user.dict(), 'secret', algorithm='HS256').decode('ascii')
-    
+        try:
+            return jwt.encode(
+                user.dict(),
+                'secret',
+                algorithm='HS256',
+            ).decode('ascii')
+        except InvalidSignatureError:
+            raise HTTPException(status_code=422, detail='JWT processing error')
+
     def decode(self, token: str):
-        return jwt.decode(token, 'secret', algorithms=['HS256'])
+        try:
+            return jwt.decode(token, 'secret', algorithms=['HS256'])
+        except DecodeError:
+            raise HTTPException(status_code=422, detail='JWT processing error')

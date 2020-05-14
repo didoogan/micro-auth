@@ -1,11 +1,7 @@
 import uvicorn
 
-import databases
 from database import database
-import sqlalchemy
 from fastapi import FastAPI
-from pydantic import BaseModel
-
 from users.routes import router as user_router
 
 app = FastAPI(debug=True)

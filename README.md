@@ -1,3 +1,3 @@
 # micro-auth
 
-App for basic authentication, authorizaton functionality
+App for basic authentication, authorization functionality

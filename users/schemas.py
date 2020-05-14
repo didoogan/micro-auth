@@ -1,9 +1,9 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr, constr
 
 
 class UserIn(BaseModel):
-    email: str
-    password: str
+    email: EmailStr
+    password: constr(min_length=8, max_length=40)
 
 
 class User(UserIn):
@@ -12,7 +12,7 @@ class User(UserIn):
 
 class AuthUser(BaseModel):
     id: str
-    email: str
+    email: EmailStr
 
 
 class AuthResponse(BaseModel):
