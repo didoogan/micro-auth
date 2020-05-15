@@ -1,5 +1,6 @@
 -r base.txt
 
-flake8
-pytest
-requests
+flake8==3.7.9
+pytest==5.4.2
+requests==2.23.0
+pytest-asyncio==0.12.0
