@@ -48,7 +48,7 @@ class TestUsers:
         response = client.post('users/signin', json=user_data)
         assert response.status_code == 200
 
-    def test_signup_fail(self, client):
+    def test_signin_fail(self, client):
         wrong_payload = {'email': 'wrong@wrong.com', 'password': 'password123'}
         response = client.post('users/signin', json=wrong_payload)
         assert response.status_code == 400
