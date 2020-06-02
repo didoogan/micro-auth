@@ -7,19 +7,9 @@ import nest_asyncio
 nest_asyncio.apply()
 
 
-class TestUsersU(unittest.TestCase):
-
-    def test_simple(self):
-        self.assertEqual(1, 2 - 1)
-
 
 @pytest.mark.asyncio
 class TestUsers:
-
-    def test_dich(self, client):
-        response = client.get('users/dich')
-        assert response.status_code == 200
-        assert response.json() == {'message': 'dich'}
 
     async def test_signup_success(self, client, user_data, user_manager):
         response = client.post('users/signup', json=user_data)
